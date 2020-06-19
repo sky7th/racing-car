@@ -1,5 +1,5 @@
 import * as React from 'preact';
-import App from './src/App'
+import App from './src/App';
 
 var h = React.createElement;
 
