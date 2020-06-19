@@ -1,6 +1,6 @@
 import * as React from 'preact';
 import { useState } from 'preact/hooks';
-import Race from './domain/Race';
+import RaceSetting from './domain/RaceSetting';
 import CarsLongerThanMaxError from './error/CarsLongerThanMaxError';
 
 const App = () => {
@@ -12,7 +12,7 @@ const App = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
-      const race = Race.builder()
+      const raceSetting = RaceSetting.builder()
         .nameOfParticipants(nameOfParticipants)
         .movingCount(moveCount)
         .build();
