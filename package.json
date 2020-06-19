@@ -1,0 +1,32 @@
+{
+  "name": "racing-car",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "testwatch": "jest --watchAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sky7th/racing-car.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sky7th/racing-car/issues"
+  },
+  "homepage": "https://github.com/sky7th/racing-car#readme",
+  "dependencies": {
+    "@types/jest": "^26.0.0",
+    "preact": "^10.4.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
+    "jest": "^26.0.1",
+    "typescript": "^3.9.5"
+  }
+}
