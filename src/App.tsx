@@ -2,6 +2,9 @@ import * as React from 'preact';
 import { useState } from 'preact/hooks';
 import RaceSetting from './domain/RaceSetting';
 import CarsLongerThanMaxError from './error/CarsLongerThanMaxError';
+import Race from './domain/Race';
+import Car from './domain/Car';
+import RaceResult from './domain/RaceResult';
 
 const App = () => {
   const [nameOfParticipants, setNameOfParticipants] = useState('');
@@ -16,6 +19,14 @@ const App = () => {
         .nameOfParticipants(nameOfParticipants)
         .movingCount(moveCount)
         .build();
+      const race = new Race(raceSetting);
+      while (!race.isComplete()) {
+        race.move();
+      }
+      const leadingCars: Car[] = race.cars.getLeadingCars();
+      const raceResult = new RaceResult(leadingCars);
+      const winnerNames: string[] = raceResult.getWinnerCarNames();
+
     } catch(err) {
       console.log(err);
       

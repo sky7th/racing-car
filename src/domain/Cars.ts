@@ -13,4 +13,14 @@ export default class Cars {
       car.goForward();
     });
   }
+
+  getLeadingCars() {
+    const positionOfLeadingCar = this.getPositionOfLeadingCar();
+    return this._cars.filter(car => car.position === positionOfLeadingCar);
+  }
+
+  getPositionOfLeadingCar() {
+    const carPositions = this._cars.map(car => car.position);
+    return Math.max(...carPositions);
+  }
 }
