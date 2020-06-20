@@ -6,8 +6,9 @@ describe('Car 클래스', () => {
     expect(car).toBeInstanceOf(Car);
   });
 
-  it('자동차가 앞으로 한 칸 간다.', () => {
+  it('자동차가 시작점에서 앞으로 한 번 간다.', () => {
     const car = new Car('람보르기니');
-    car.goForward();
+    car.go();
+    expect(car.position).toEqual(1);
   });
 });

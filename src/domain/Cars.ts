@@ -14,7 +14,7 @@ export default class Cars {
 
   move() {
     this._cars.forEach(car => {
-      car.goForward();
+      car.goWithRandomProbability();
     });
   }
 

@@ -20,10 +20,14 @@ export default class Car {
     return this._position;
   }
 
-  goForward() {
+  goWithRandomProbability() {
     const canGo = RandomUtils.getTrueOrFalse();
     if (canGo) {
-      this._position += Car.DEFAULT_GO_DISTANCE;
+      this.go();
     }
+  }
+
+  go() {
+    this._position += Car.DEFAULT_GO_DISTANCE;
   }
 }
