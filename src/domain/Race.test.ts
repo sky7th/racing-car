@@ -11,9 +11,12 @@ describe('Race 클래스', () => {
 
   it('시도 횟수가 0이 되면 경주가 끝난다.', () => {
     const race = new Race(raceSetting);
-    race.move();
-    race.move();
-    race.move();
+    const moveCount = 3;
+    for (let i = 0; i < moveCount; i++) {
+      race.move();
+      console.log('여기', race.movingCount);
+      
+    }
     expect(race.isComplete()).toEqual(true);
   });
 });

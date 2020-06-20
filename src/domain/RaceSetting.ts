@@ -15,7 +15,7 @@ export default class RaceSetting {
 
   constructor(builder: any) {
     this._cars = new Cars(builder._participantNames);
-    this._movingCount = builder._movingCount;
+    this._movingCount = builder._moveCount;
   }
 
   get cars(): Cars {

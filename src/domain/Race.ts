@@ -17,6 +17,10 @@ export default class Race {
     return this._cars;
   }
 
+  get movingCount() {
+    return this._movingCount;
+  }
+
   isComplete() {
     return this._movingCount === Race.ZERO_COUNT;
   }
