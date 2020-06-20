@@ -9,6 +9,8 @@ import RaceResult from './domain/RaceResult';
 const App = () => {
   const [nameOfParticipants, setNameOfParticipants] = useState('');
   const [moveCount, setMoveCount] = useState(0);
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChangeNameOfParticipants = (e) => setNameOfParticipants(e.target.value);
   const handleChangeMoveCount = (e) => setMoveCount(e.target.value);
@@ -28,9 +30,13 @@ const App = () => {
       const winnerNames: string[] = raceResult.getWinnerCarNames();
 
     } catch(err) {
-      console.log(err);
-      
+      setError(err.message);
     }
+  }
+
+  const setError = (errorMessage: string): void => {
+    setErrorMessage(errorMessage);
+    setIsError(true);
   }
 
   return (
@@ -48,6 +54,11 @@ const App = () => {
           value={ moveCount } onChange={ handleChangeMoveCount }></input>
       </div>
       <button type="submit" onClick={ handleSubmit }>시작</button>
+      { isError && (
+        <div id="errorMessage" style={{ color: 'red' }}>
+          { errorMessage }
+        </div>
+      )}
     </div>
   );
 }
