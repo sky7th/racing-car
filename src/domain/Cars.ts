@@ -8,6 +8,10 @@ export default class Cars {
     this._cars = participantNames.map(name => new Car(name))
   }
 
+  get cars() {
+    return this._cars;
+  }
+
   move() {
     this._cars.forEach(car => {
       car.goForward();

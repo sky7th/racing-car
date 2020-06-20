@@ -1,4 +1,6 @@
 import RaceSetting from "./RaceSetting";
+import MoveCountLongerThanMaxError from "../error/MoveCountLongerThanMaxError";
+import MoveCountShorterThanMinError from "../error/MoveCountShorterThanMinError";
 
 describe('RaceSetting 클래스', () => {
   it('객체를 생성한다.', () => {
@@ -24,5 +26,21 @@ describe('RaceSetting 클래스', () => {
   it('입력으로 받은 자동차 이름의 갯수가 범위를 초과하면 예외가 발생한다.', () => {
     const errorProneFunc = () => RaceSetting.builder().nameOfParticipants('a,a,a,a,a,a,a,a,a,a,a,a,a').build();
     expect(errorProneFunc).toThrow(expect.objectContaining({ name: 'CarsLongerThanMaxError'}));
+  });
+
+  it('입력으로 받은 시도 횟수가 범위 보다 작으면 예외가 발생한다.', () => {
+    const errorProneFunc = () => RaceSetting.builder()
+      .nameOfParticipants('a, b, c')
+      .movingCount(MoveCountShorterThanMinError.MINIMUN_NUMBER_OF_MOVE_COUNT - 1)
+      .build();
+    expect(errorProneFunc).toThrow(expect.objectContaining({ name: 'MoveCountShorterThanMinError'}));
+  });
+
+  it('입력으로 받은 시도 횟수가 범위 보다 크면 예외가 발생한다.', () => {
+    const errorProneFunc = () => RaceSetting.builder()
+      .nameOfParticipants('a, b, c')
+      .movingCount(MoveCountLongerThanMaxError.MAXIMUM_NUMBER_OF_MOVE_COUNT + 1)
+      .build();
+    expect(errorProneFunc).toThrow(expect.objectContaining({ name: 'MoveCountLongerThanMaxError'}));
   });
 });

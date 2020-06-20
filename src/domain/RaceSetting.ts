@@ -2,10 +2,12 @@ import Cars from "./Cars";
 import InvalidNameOfParticipantsError from "../error/InvalidNameOfParticipantsError";
 import CarsLongerThanMaxError from "../error/CarsLongerThanMaxError";
 import CarsShorterThanMinError from "../error/CarsShorterThanMinError";
+import MoveCountShorterThanMinError from "../error/MoveCountShorterThanMinError";
+import MoveCountLongerThanMaxError from "../error/MoveCountLongerThanMaxError";
 
 export default class RaceSetting {
 
-  private static readonly DEFAULT_MOVING_COUNT: number = 5;
+  private static readonly DEFAULT_MOVE_COUNT: number = 5;
   private static readonly CAR_NAME_SEPARATOR: string = ',';
 
   private _cars: Cars;
@@ -30,7 +32,7 @@ export default class RaceSetting {
 
   static Builder = class {
     _participantNames: string[] = [];
-    _movingCount: number = RaceSetting.DEFAULT_MOVING_COUNT;
+    _moveCount: number = RaceSetting.DEFAULT_MOVE_COUNT;
 
     nameOfParticipants(nameOfParticipants: string) {
       this._participantNames = this.convertToParticipantNames(nameOfParticipants);
@@ -45,12 +47,13 @@ export default class RaceSetting {
     }
     
     movingCount(moveCount: number) {
-      this._movingCount = moveCount;
+      this._moveCount = moveCount;
       return this;
     }
 
     build() {
       this.checkParticipantNamesConstraints(this._participantNames);
+      this.checkMoveCountConstraints(this._moveCount);
       return new RaceSetting(this);
     }
 
@@ -63,6 +66,15 @@ export default class RaceSetting {
       }
       if (participantNames.length < CarsShorterThanMinError.MINIMUM_NUMBER_OF_CARS) {
         throw new CarsShorterThanMinError(participantNames.length);
+      }
+    }
+
+    checkMoveCountConstraints(moveCount: number) {
+      if (moveCount < MoveCountShorterThanMinError.MINIMUN_NUMBER_OF_MOVE_COUNT) {
+        throw new MoveCountShorterThanMinError(moveCount);
+      }
+      if (moveCount > MoveCountLongerThanMaxError.MAXIMUM_NUMBER_OF_MOVE_COUNT) {
+        throw new MoveCountLongerThanMaxError(moveCount);
       }
     }
   }
