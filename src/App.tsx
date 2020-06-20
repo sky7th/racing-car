@@ -1,21 +1,24 @@
 import * as React from 'preact';
 import { useState } from 'preact/hooks';
 import RaceSetting from './domain/RaceSetting';
-import CarsLongerThanMaxError from './error/CarsLongerThanMaxError';
 import Race from './domain/Race';
 import Car from './domain/Car';
 import RaceResult from './domain/RaceResult';
+import Result from './components/Result';
 
 const App = () => {
   const [nameOfParticipants, setNameOfParticipants] = useState('');
   const [moveCount, setMoveCount] = useState(0);
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [winnerNames, setWinnerNames] = useState(new Array());
 
   const handleChangeNameOfParticipants = (e) => setNameOfParticipants(e.target.value);
   const handleChangeMoveCount = (e) => setMoveCount(e.target.value);
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsError(false);
+    
     try {
       const raceSetting = RaceSetting.builder()
         .nameOfParticipants(nameOfParticipants)
@@ -28,6 +31,7 @@ const App = () => {
       const leadingCars: Car[] = race.cars.getLeadingCars();
       const raceResult = new RaceResult(leadingCars);
       const winnerNames: string[] = raceResult.getWinnerCarNames();
+      setWinnerNames(winnerNames);
 
     } catch(err) {
       setError(err.message);
@@ -59,6 +63,7 @@ const App = () => {
           { errorMessage }
         </div>
       )}
+      <Result winnerNames={ winnerNames }/>
     </div>
   );
 }
