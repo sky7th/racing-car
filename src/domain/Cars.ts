@@ -1,10 +1,16 @@
 import Car from "./Car";
 
 export default class Cars {
-  
-  cars: Car[];
+
+  private _cars: Car[];
 
   constructor(participantNames: string[]) {
-    this.cars = participantNames.map(name => new Car(name))
+    this._cars = participantNames.map(name => new Car(name))
+  }
+
+  move() {
+    this._cars.forEach(car => {
+      car.goForward();
+    });
   }
 }

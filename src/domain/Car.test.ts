@@ -5,4 +5,10 @@ describe('Car 클래스', () => {
     const car = new Car('람보르기니');
     expect(car).toBeInstanceOf(Car);
   });
+
+  it('자동차가 앞으로 한 칸 간다.', () => {
+    const car = new Car('람보르기니');
+    car.goForward();
+    expect(car.position).toEqual(0 || 1);
+  });
 });
