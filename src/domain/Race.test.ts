@@ -14,8 +14,6 @@ describe('Race 클래스', () => {
     const moveCount = 3;
     for (let i = 0; i < moveCount; i++) {
       race.move();
-      console.log('여기', race.movingCount);
-      
     }
     expect(race.isComplete()).toEqual(true);
   });
